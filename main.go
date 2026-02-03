@@ -42,6 +42,9 @@ func main() {
 		http.ServeFile(w, r, "google2d7020435e6908ed.html")
 	})
 
+	// 提供 favicon.png，確保瀏覽器可以抓到
+	http.Handle("/favicon.png", http.FileServer(http.Dir(".")))
+
 	// 1. 靜態檔案設定
 	fs := http.FileServer(http.Dir("static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
